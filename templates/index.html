@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .action-item {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .meta-list {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        .meta-item {
+            margin-bottom: 5px;
+        }
+        .label {
+            font-weight: bold;
+            color: #0066f3;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1>Actions</h1>
+        <form method="POST">
+            <textarea name="text" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if text %}
+        <h2>Text:</h2>
+        <p>{{ text }}</p>
+        {% endif %}
+        {% if actions %}
+        <h2>Actions:</h2>
+        <ul>
+            {% for action in actions %}
+            <li class="action-item"> <span class="label">action:</span> {{ action.action }} <span class="label">object:</span> {{ action.obj }}
+                {% if action.meta %}
+                    <ul class="meta-list">
+                        {% for meta_dict in action.meta %}
+                            <li class="meta-item">
+                                <span class="label">unit:</span> {{ meta_dict.unit }},
+                                <span class="label">quantity:</span> {{ meta_dict.quantity }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
