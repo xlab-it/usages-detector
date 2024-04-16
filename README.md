@@ -6,6 +6,10 @@ pip install -U spacy
 python -m spacy download ru_core_news_sm
 ```
 
+## Демо
+![](images/img.png)
+![](images/img_1.png)
+
 ## Что можно улучшить?
 - Сопоставление слов. Параметр `threshold` не очень честно работает
 для слов, которые при склонении сильно трансформируются.
